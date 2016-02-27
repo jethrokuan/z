@@ -1,60 +1,59 @@
-set DIR $DIRNAME
-set path $DIRNAME/$TESTNAME
-set -g Z_DATA "$DIRNAME/.z"
+set pth $DIRNAME/$TESTNAME
+set -g Z_DATA "$pth/.z"
 
-debug "setting up"
-echo > $Z_DATA
-mkdir -p $path/{foo,bar,baz}
+mkdir -p $pth/{foo,bar,baz}
+touch $Z_DATA
 
 for i in foo bar baz
-  cd $path/$i
+  cd $pth/$i
 end
 
 function setup
-  debug "setup test"
-  set -g Z_DATA "$DIR/.z"
+  set -g Z_DATA "$pth/.z"
 end
 
-test "$Z_DATA is created"
+test ".z is created"
   -f $Z_DATA
 end
 
-test "$Z_DATA has foo"
+test "has foo"
   "found it" = (cat "$Z_DATA" | grep -q foo; and echo "found it"; or echo "not found")
 end
 
-test "$Z_DATA has bar"
+test "has bar"
   "found it" = (cat "$Z_DATA" | grep -q bar; and echo "found it"; or echo "not found")
 end
 
-test "$Z_DATA does not have kid"
+test "does not have kid"
   "not found" = (cat "$Z_DATA" | grep -q kid; and echo "found it"; or echo "not found")
 end
 
-test "z -e does the right thing"
-  $path/foo = (z -e foo)
+test "z -e foo"
+  $pth/foo = (z -e foo)
 end
 
-test "z -h prints help"
+test "z -e kid"
+  "'kid' did not match any results" = (z -e kid)
+end
+
+test "z -h"
   "found it" = (z -h | grep -q Usage; and echo "found it"; or echo "not found")
 end
 
-test "z -v shows not a valid option"
+test "z -v fails"
   "found it" = (z -v | grep -q valid; and echo "found it"; or echo "not found")
 end
 
-test "z foo does the right thing"
-  $path/foo = (z foo; and echo $PWD)
+test "z foo"
+  $pth/foo = (z foo; and echo $PWD)
 end
 
-test "z bar does the right thing"
-  $path/bar = (z bar; and echo $PWD)
+test "z bar"
+  $pth/bar = (z bar; and echo $PWD)
 end
 
-test "z kid returns no results"
+test "z kid"
   "'kid' did not match any results" = (z kid; and echo $PWD)
 end
 
-
-debug "tearing down"
-rm -rf $path
+rm -rf $pth
