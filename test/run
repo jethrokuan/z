@@ -1,0 +1,2 @@
+#!bin/sh
+fish -c "set -U $Z_CMD j; fishtape *.fish"

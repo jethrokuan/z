@@ -1,17 +1,17 @@
 set pth $DIRNAME/$TESTNAME
-set -U Z_DATA "$pth/.z"
-set -U Z_CMD  "j"
-
-mkdir -p $pth/{foo,bar,baz}
-touch $Z_DATA
-
-for i in foo bar baz
-  cd $pth/$i
-end
 
 function setup
   set -U Z_DATA "$pth/.z"
-  set -U Z_CMD "j"
+  mkdir -p $pth/{foo,bar}
+  touch $Z_DATA
+
+  for i in foo bar
+    cd $pth/$i
+  end
+end
+
+function teardown
+  rm -rf $pth
 end
 
 test ".z is created"
@@ -34,32 +34,30 @@ test "does not have kid with correct exit code"
   "not found 1" = (cat "$Z_DATA" | grep -q kid; and echo "found it" $status; or echo "not found" $status;)
 end
 
-test "$Z_CMD -e foo"
-  $pth/foo = (eval $Z_CMD -e foo)
+test "z -e foo"
+  $pth/foo = (z -e foo)
 end
 
-test "$Z_CMD -e kid with correct exit code"
-  "'kid' did not match any results1" = (eval $Z_CMD -e kid; echo $status)
+test "z -e kid with correct exit code"
+  "'kid' did not match any results1" = (z -e kid; echo $status)
 end
 
-test "$Z_CMD -h"
-  "found it" = (eval $Z_CMD -h | grep -q Usage; and echo "found it"; or echo "not found")
+test "z -h"
+  "found it" = (z -h | grep -q Usage; and echo "found it"; or echo "not found")
 end
 
-test "$Z_CMD -v fails"
-  "found it" = (eval $Z_CMD -v | grep -q valid; and echo "found it"; or echo "not found")
+test "z -v fails"
+  "found it" = (z -v | grep -q valid; and echo "found it"; or echo "not found")
 end
 
-test "$Z_CMD foo"
-  $pth/foo = (eval $Z_CMD foo; and echo $PWD)
+test "z foo"
+  $pth/foo = (z foo; and echo $PWD)
 end
 
-test "$Z_CMD bar"
-  $pth/bar = (eval $Z_CMD bar; and echo $PWD)
+test "z bar"
+  $pth/bar = (z bar; and echo $PWD)
 end
 
-test "$Z_CMD kid"
-  "'kid' did not match any results1" = (eval $Z_CMD kid; and echo $PWD $status; or echo $status)
+test "z kid"
+  "'kid' did not match any results1" = (z kid; and echo $PWD $status; or echo $status)
 end
-
-rm -rf $pth
