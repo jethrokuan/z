@@ -8,6 +8,10 @@ function __z -d "Jump to a recent directory."
   
   getopts $argv | while read -l 1 2
     switch $1
+      case c clean
+        echo > $Z_DATA
+        printf "%s cleaned!" $Z_DATA
+        return 0
       case e echo
         set option ech
         set args "$2"
@@ -28,11 +32,12 @@ function __z -d "Jump to a recent directory."
         set args "$2"
         break
       case h help
-        printf "Usage: z  [--list] [--rank] [--recent] [--help]\n\n"
-        printf "         -e --echo     Echo best match without changing directory\n"
-        printf "         -l --list     List matches without changing directory\n"
-        printf "         -r --rank     Searches and changes directory by rank\n"
-        printf "         -t --recent   Search and changes directory by recency\n"
+        printf "Usage: z  [-celrth] dir\n\n"
+        printf "         -c --clean    Cleans out Z_DATA"
+        printf "         -e --echo     Prints best match, no cd\n"
+        printf "         -l --list     List matches, no cd\n"
+        printf "         -r --rank     Search by rank, cd\n"
+        printf "         -t --recent   Search by recency, cd\n"
         printf "         -h --help     Print this help"
         return 0
       case \*

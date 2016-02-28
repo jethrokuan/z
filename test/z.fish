@@ -34,11 +34,15 @@ test "! has kid"
   1 -eq (grep -q kid $Z_DATA; echo $status)
 end
 
+test "z --clean"
+  -z (z --clean > /dev/null; cat $Z_DATA)
+end
+
 test "z -e foo"
   $pth/foo = (z -e foo)
 end
 
-test "z -e kid with correct exit code"
+test "! z -e kid"
   "'kid' did not match any results1" = (z -e kid; echo $status)
 end
 

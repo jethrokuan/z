@@ -16,10 +16,10 @@ function -S teardown
   rm -rf $path
 end
 
-test "does not have gen with correct exit code"
+test "! has gen"
   1 -eq (grep -q gen $Z_DATA; echo $status)
 end
 
-test "does not have vim with correct exit code"
+test "! has vim"
   1 -eq (grep -q vim $Z_DATA; echo $status)
 end
