@@ -23,15 +23,15 @@ test "Z_CMD is set"
 end
 
 test "has foo"
-  "found it" = (cat "$Z_DATA" | grep -q foo; and echo "found it"; or echo "not found")
+  0 -eq (grep -q foo $Z_DATA; echo $status)
 end
 
 test "has bar"
-  "found it" = (cat "$Z_DATA" | grep -q bar; and echo "found it"; or echo "not found")
+  0 -eq (grep -q bar $Z_DATA; echo $status)
 end
 
-test "does not have kid with correct exit code"
-  "not found 1" = (cat "$Z_DATA" | grep -q kid; and echo "found it" $status; or echo "not found" $status;)
+test "! has kid"
+  1 -eq (grep -q kid $Z_DATA; echo $status)
 end
 
 test "z -e foo"
@@ -43,11 +43,11 @@ test "z -e kid with correct exit code"
 end
 
 test "z -h"
-  "found it" = (z -h | grep -q Usage; and echo "found it"; or echo "not found")
+  0 -eq (z -h | grep -q Usage; echo $status)
 end
 
 test "z -v fails"
-  "found it" = (z -v | grep -q valid; and echo "found it"; or echo "not found")
+  0 -eq (z -v | grep -q valid; echo $status)
 end
 
 test "z foo"
