@@ -1,4 +1,4 @@
-function z -d "Jump to a recent directory."
+function __z -d "Jump to a recent directory."
   set -l option
   set -l list
   set -l args
@@ -37,7 +37,7 @@ function z -d "Jump to a recent directory."
         return 0
       case \*
         printf "z: '%s' is not a valid option\n" $1
-        z --help
+        __z --help
         return 1
     end
   end
