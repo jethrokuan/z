@@ -31,8 +31,12 @@ z foo             Goes to directory best matching foo
 z -t foo          Goes to most recent directory matching foo
 ```
 
+## License
+MIT
+
 [slack-link]: https://fisherman-wharf.herokuapp.com/
 [slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
 [Fisherman]: https://github.com/fisherman/fisherman
 [travis-link]: https://travis-ci.org/fishery/fish-z
 [travis-badge]: https://img.shields.io/travis/fishery/fish-z.svg?style=flat-square
+
