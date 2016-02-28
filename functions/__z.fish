@@ -1,10 +1,9 @@
 function __z -d "Jump to a recent directory."
   set -l option
-  set -l list
-  set -l args
+  set -l arg
   set -l typ ''
-  set -l list 0
   set -g z_path (dirname (status -f))
+  set -l target
   
   getopts $argv | while read -l 1 2
     switch $1
@@ -14,22 +13,22 @@ function __z -d "Jump to a recent directory."
         return 0
       case e echo
         set option ech
-        set args "$2"
+        set arg "$2"
         break
       case l list
         set option list
-        set args "$2"
+        set arg "$2"
         break
       case r rank
         set typ "rank"
-        set args "$2"
+        set arg "$2"
         break
       case t recent
         set typ "recent"
-        set args "$2"
+        set arg "$2"
         break
       case _
-        set args "$2"
+        set arg "$2"
         break
       case h help
         printf "Usage: z  [-celrth] dir\n\n"
@@ -46,15 +45,19 @@ function __z -d "Jump to a recent directory."
         return 1
     end
   end
-  
-  set -l target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$args" -F "|" -f $z_path/z.awk "$Z_DATA")
 
+  if test 1 -eq (printf "%s" $arg | grep -c "^\/")
+    set target $arg
+  else
+    set target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
+  end
+  
   if test "$status" -gt 0
     return
   end
 
   if test -z "$target"
-    printf "'%s' did not match any results" "$args"
+    printf "'%s' did not match any results" "$arg"
     return 1
   end
 
