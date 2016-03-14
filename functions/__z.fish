@@ -66,11 +66,10 @@ function __z -d "Jump to a recent directory."
   end
 
   if contains -- open $option
-    type -q xdg-open; and xdg-open "$target"
-    return 0
-    type -q open; and xdg-open "$target"
-    return 0
+    type -q xdg-open; and xdg-open "$target"; and return 0
+    type -q open; and open "$target"; and return 0
     echo "Not sure how to open the file manager"
+    return 1
   end
 
   if contains -- ech $option
