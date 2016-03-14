@@ -13,8 +13,16 @@ if not set -q Z_CMD
   set -U Z_CMD "z"
 end
 
+set -U ZO_CMD ""
+
+command printf "%so" $Z_CMD | read ZO_CMD
+
 function $Z_CMD -d "jump around"
   __z $argv
+end
+
+function $ZO_CMD -d "open target dir" -a dir
+  __z -o $dir
 end
 
 if not set -q Z_EXCLUDE

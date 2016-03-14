@@ -12,11 +12,15 @@ function __z -d "Jump to a recent directory."
         printf "%s cleaned!" $Z_DATA
         return 0
       case e echo
-        set option ech
+        set option "ech"
+        set arg "$2"
+        break
+      case o open
+        set option "open"
         set arg "$2"
         break
       case l list
-        set option list
+        set option "list"
         set arg "$2"
         break
       case r rank
@@ -61,9 +65,17 @@ function __z -d "Jump to a recent directory."
     return 1
   end
 
+  if contains -- open $option
+    type -q xdg-open; and xdg-open "$target"
+    return 0
+    type -q open; and xdg-open "$target"
+    return 0
+    echo "Not sure how to open the file manager"
+  end
+
   if contains -- ech $option
     printf "%s\n" "$target"
   else if not contains -- list $option
-    cd "$target"
+    pushd "$target"
   end
 end
