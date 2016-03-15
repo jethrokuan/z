@@ -8,7 +8,7 @@ if test ! -f "$Z_DATA"
   touch "$Z_DATA"
 end
 
-if not set -q Z_CMD
+if test ! -z "$Z_CMD"
   debug "Z_CMD not set, defaulting to `z`"
   set -U Z_CMD "z"
 end
@@ -16,6 +16,8 @@ end
 set -U ZO_CMD ""
 
 command printf "%so" $Z_CMD | read ZO_CMD
+
+debug "$Z_CMD $ZO_CMD"
 
 function $Z_CMD -d "jump around"
   __z $argv
