@@ -13,9 +13,7 @@ if test -z "$Z_CMD"
   set -U Z_CMD "z"
 end
 
-set -U ZO_CMD ""
-
-command printf "%so" $Z_CMD | read ZO_CMD
+set -U ZO_CMD "$Z_CMD"o
 
 debug "$Z_CMD $ZO_CMD"
 
