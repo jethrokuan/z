@@ -17,8 +17,6 @@ function __z -d "Jump to a recent directory."
         break
       case o open
         set option "open"
-        set arg "$2"
-        break
       case l list
         set option "list"
         set arg "$2"
@@ -36,12 +34,12 @@ function __z -d "Jump to a recent directory."
         break
       case h help
         printf "Usage: z  [-celrth] dir\n\n"
-        printf "         -c --clean    Cleans out Z_DATA"
+        printf "         -c --clean    Cleans out Z_DATA\n"
         printf "         -e --echo     Prints best match, no cd\n"
         printf "         -l --list     List matches, no cd\n"
         printf "         -r --rank     Search by rank, cd\n"
         printf "         -t --recent   Search by recency, cd\n"
-        printf "         -h --help     Print this help"
+        printf "         -h --help     Print this help" 
         return 0
       case \*
         printf "z: '%s' is not a valid option\n" $1
