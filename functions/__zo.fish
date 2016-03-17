@@ -33,7 +33,7 @@ function __zo -d "Jump to a recent directory."
     printf "'%s' did not match any results" "$arg"
     return 1
   else
-    if test -z "$ZO_METHOD"
+    if test ! -z "$ZO_METHOD"
       eval "$ZO_METHOD" "$target"; return 0;
     else
       type -q xdg-open;and xdg-open "$target"; and return $status;
