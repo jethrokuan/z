@@ -33,6 +33,14 @@ zo foo            Opens file manager of directory best matching foo
 z -t foo          Goes to most recent directory matching foo
 ```
 
+## Configuring Z
+There are commands that let you modify the behaviour of `z`:
+``` fish
+set -U Z_CMD "j"               Change commands to j and jo
+set -U Z_DATA "$HOME/.foo"     Set data file to $HOME/.foo
+set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir`
+```
+
 ## License
 MIT
 
