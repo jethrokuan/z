@@ -35,9 +35,10 @@ function __zo -d "Jump to a recent directory."
   else
     if test -z "$ZO_METHOD"
       eval "$ZO_METHOD" "$target"; return 0;
+    else
+      type -q xdg-open;and xdg-open "$target"; and return $status;
+      type -q open;and open "$target"; and return $status;
+      echo "Not sure how to open file manager"; and return 1;
     end
-    type -q xdg-open;and xdg-open "$target"; and return $status;
-    type -q open;and open "$target"; and return $status;
-    echo "Not sure how to open file manager"; and return 1;
   end
 end
