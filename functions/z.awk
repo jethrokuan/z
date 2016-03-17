@@ -6,16 +6,14 @@ function frecent(rank, time) {
     return rank/4
 }
                     
-function output(files, toopen, override) {
+function output(files, toopen) {
     if( option == "list" ) {
         if( typ == "recent" ) {
             cmd = "sort -nr >&2"
         } else cmd = "sort -n >&2"
         for( i in files ) if( files[i] ) printf "%-10s %s\n", files[i], i | cmd
-        if( override ) printf "%-10s %s\n", "common:", override > "/dev/stderr"
         print "done"
     } else {
-        if( override ) toopen = override
         print toopen
     }
 }
@@ -56,6 +54,6 @@ BEGIN { split(q, a, " ") }
     }
     END {
         if( cx ) {
-            output(wcase, cx, common(wcase, a, 0))
-        } else if( ncx ) output(nocase, ncx, common(nocase, a, 1))
+            output(wcase, cx)
+        } else if( ncx ) output(nocase, ncx)
     }

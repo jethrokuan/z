@@ -15,8 +15,6 @@ function __z -d "Jump to a recent directory."
         set option "ech"
         set arg "$2"
         break
-      case o open
-        set option "open"
       case l list
         set option "list"
         set arg "$2"
@@ -33,8 +31,8 @@ function __z -d "Jump to a recent directory."
         set arg "$2"
         break
       case h help
-        printf "Usage: z  [-celrth] dir\n\n"
-        printf "         -c --clean    Cleans out Z_DATA\n"
+        printf "Usage: $Z_CMD  [-celrth] dir\n\n"
+        printf "         -c --clean    Cleans out $Z_DATA\n"
         printf "         -e --echo     Prints best match, no cd\n"
         printf "         -l --list     List matches, no cd\n"
         printf "         -r --rank     Search by rank, cd\n"
@@ -42,7 +40,7 @@ function __z -d "Jump to a recent directory."
         printf "         -h --help     Print this help" 
         return 0
       case \*
-        printf "z: '%s' is not a valid option\n" $1
+        printf "$Z_CMD: '%s' is not a valid option\n" $1
         __z --help
         return 1
     end
@@ -63,14 +61,8 @@ function __z -d "Jump to a recent directory."
     return 1
   end
 
-  if contains -- open $option
-    type -q xdg-open; and xdg-open "$target"; and return 0
-    type -q open; and open "$target"; and return 0
-    echo "Not sure how to open the file manager"
-    return 1
-  end
-
   if contains -- ech $option
+    debug $target
     printf "%s\n" "$target"
   else if not contains -- list $option
     pushd "$target"
