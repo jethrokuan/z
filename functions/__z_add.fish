@@ -15,4 +15,5 @@ function __z_add -d "Add PATH to .z file"
   end
 
   source $path/../completions/z.fish
+  source $path/../completions/zo.fish
 end
