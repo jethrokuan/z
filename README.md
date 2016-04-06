@@ -65,8 +65,8 @@ SOFTWARE.
 [slack-link]: https://fisherman-wharf.herokuapp.com/
 [slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
 [Fisherman]: https://github.com/fisherman/fisherman
-[travis-link]: https://travis-ci.org/fishery/fish-z
-[travis-badge]: https://img.shields.io/travis/fishery/fish-z.svg?style=flat-square
+[travis-link]: https://travis-ci.org/fishery/z
+[travis-badge]: https://img.shields.io/travis/fishery/z.svg?style=flat-square
 
 <!-- Local Variables: -->
 <!-- firestarter-type: t -->
