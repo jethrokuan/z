@@ -1,21 +1,16 @@
 if test -z "$Z_DATA"
-  debug "Z_DATA not set, defaulting to $HOME/.z"
   set -U Z_DATA "$HOME/.z"
 end
 
 if test ! -f "$Z_DATA"
-  debug "$Z_DATA not found, creating..."
   touch "$Z_DATA"
 end
 
 if test -z "$Z_CMD"
-  debug "Z_CMD not set, defaulting to `z`"
   set -U Z_CMD "z"
 end
 
 set -U ZO_CMD "$Z_CMD"o
-
-debug "$Z_CMD $ZO_CMD"
 
 if test ! -z $Z_CMD
   function $Z_CMD -d "jump around"
