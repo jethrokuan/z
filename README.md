@@ -7,12 +7,28 @@
 
 z uses a combination of recency and frequency (termed _frecency_) to bring you to the directory you want.
 
+Recommended fish version: `2.2.0`
+
 ## Install
 
 With [Fisherman]
 
 ```
 fisher install z
+```
+
+With [Fin]
+
+```
+fin z
+```
+
+_NOTE: `z` requires `conf.d` support, so if you're installing `z` with fish `<2.3.0` you'll need to add the following snippet in `.config/fish/config.fish` to support that:_
+
+```
+for file in ~/.config/fish/conf.d/*.fish
+    source $file
+end
 ```
 
 ## Usage
@@ -67,7 +83,7 @@ SOFTWARE.
 [Fisherman]: https://github.com/fisherman/fisherman
 [travis-link]: https://travis-ci.org/fishery/z
 [travis-badge]: https://img.shields.io/travis/fishery/z.svg?style=flat-square
-
+[Fin]:https://github.com/fishery/fin
 <!-- Local Variables: -->
 <!-- firestarter-type: t -->
 <!-- firestarter: "ronn %f;and mv %s man/man1/z.1" -->
