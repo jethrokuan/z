@@ -11,7 +11,7 @@ Recommended fish version: `2.2.0`
 
 ## Install
 
-With [Fisherman]
+With [fisherman]
 
 ```
 fisher install z
@@ -23,16 +23,16 @@ With [fin]
 fin z
 ```
 
-_NOTE: `z` requires `conf.d` support, so if you're installing `z` with fish `<2.3.0` you'll need to add the following snippet in `.config/fish/config.fish` to support that:_
+> NOTE: `z` requires `conf.d` support. If you're installing `z` with fish `<2.3.0` you'll need to add the following code in `~/.config/fish/config.fish`:
 
-```
-for file in ~/.config/fish/conf.d/*.fish
-    source $file
-end
-```
+  ```fish
+  for file in ~/.config/fish/conf.d/*.fish
+      source $file
+  end
+  ```
 
 ## Usage
-``` fish
+```
 z [-c --clean]       Cleans out Z_DATA
 z [-e --echo] foo    Prints best match, no cd
 z [-l --list] foo    List matches, no cd
@@ -43,7 +43,7 @@ zo foo               Opens file manager for best match
 ```
 
 ## Examples
-``` fish
+``` 
 z foo             Goes to directory best matching foo
 zo foo            Opens file manager of directory best matching foo
 z -t foo          Goes to most recent directory matching foo
@@ -51,7 +51,7 @@ z -t foo          Goes to most recent directory matching foo
 
 ## Configuring Z
 There are commands that let you modify the behaviour of `z`:
-``` fish
+```fish
 set -U Z_CMD "j"               Change commands to j and jo
 set -U Z_DATA "$HOME/.foo"     Set data file to $HOME/.foo
 set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir`
@@ -80,7 +80,7 @@ SOFTWARE.
 
 [slack-link]: https://fisherman-wharf.herokuapp.com/
 [slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
-[Fisherman]: https://github.com/fisherman/fisherman
+[fisherman]: https://github.com/fisherman/fisherman
 [travis-link]: https://travis-ci.org/fisherman/z
 [travis-badge]: https://img.shields.io/travis/fisherman/z.svg?style=flat-square
 [fin]:https://github.com/fisherman/fin
