@@ -62,7 +62,6 @@ function __z -d "Jump to a recent directory."
   end
 
   if contains -- ech $option
-    debug $target
     printf "%s\n" "$target"
   else if not contains -- list $option
     pushd "$target"
