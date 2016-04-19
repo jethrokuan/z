@@ -17,7 +17,7 @@ With [Fisherman]
 fisher install z
 ```
 
-With [Fin]
+With [fin]
 
 ```
 fin z
@@ -81,9 +81,10 @@ SOFTWARE.
 [slack-link]: https://fisherman-wharf.herokuapp.com/
 [slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
 [Fisherman]: https://github.com/fisherman/fisherman
-[travis-link]: https://travis-ci.org/fishery/z
-[travis-badge]: https://img.shields.io/travis/fishery/z.svg?style=flat-square
-[Fin]:https://github.com/fishery/fin
+[travis-link]: https://travis-ci.org/fisherman/z
+[travis-badge]: https://img.shields.io/travis/fisherman/z.svg?style=flat-square
+[fin]:https://github.com/fisherman/fin
+
 <!-- Local Variables: -->
 <!-- firestarter-type: t -->
 <!-- firestarter: "ronn %f;and mv %s man/man1/z.1" -->
