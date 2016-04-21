@@ -14,18 +14,24 @@ Recommended fish version: `2.2.0`
 With [fisherman]
 
 ```
-fisher install z
+fisher z
 ```
 
-> NOTE: `z` requires `conf.d` support. If you're installing `z` with fish `<2.3.0` you'll need to add the following code in `~/.config/fish/config.fish`:
+## Notes
 
-  ```
-  for file in ~/.config/fish/conf.d/*.fish
-      source $file
-  end
-  ```
-  
-  or for magic: `curl -L git.io/confd >> ~/.config/fish/config.fish`
+`z` was built for the latest fish, but at least 2.2.0 is required. If you can't upgrade your build, append the following code to your `~/.config/fish/config.fish`.
+
+```fish
+for file in ~/.config/fish/conf.d/*.fish
+    source $file
+end
+```
+
+Or let me do that for you.
+
+```fish
+curl -L git.io/confd >> ~/.config/fish/config.fish
+```
 
 ## Usage
 ```
