@@ -17,19 +17,15 @@ With [fisherman]
 fisher install z
 ```
 
-With [fin]
-
-```
-fin z
-```
-
 > NOTE: `z` requires `conf.d` support. If you're installing `z` with fish `<2.3.0` you'll need to add the following code in `~/.config/fish/config.fish`:
 
-  ```fish
+  ```
   for file in ~/.config/fish/conf.d/*.fish
       source $file
   end
   ```
+  
+  or for magic: `curl -L git.io/confd >> ~/.config/fish/config.fish`
 
 ## Usage
 ```
