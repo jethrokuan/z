@@ -2,42 +2,31 @@
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
 .TH "README" "" "April 2016" "" ""
-\fBz\fR is the new z \fIhttp://github\.com/rupa/z\fR\.
 .
 .P
-z uses a combination of recency and frequency (termed \fIfrecency\fR) to bring you to the directory you want\.
+\fBz\fR is a fish port of z \fIhttp://github\.com/rupa/z\fR\.
 .
 .P
-Recommended fish version: \fB2\.2\.0\fR
+z solves the problem of jumping to and from common project directories, by tracking the frequency and recency of directories you\'ve visited\. It then uses frecency to jump you to the correct directory\.
+.
+.P
+A \fIpure\-fish\fR port means it\'s not just \fIfast\fR, but also fish\-friendly with tab directory\-completions\. It also comes with the more flexibility and a small amount of additional functionality\.
 .
 .SH "Install"
-With Fisherman \fIhttps://github\.com/fisherman/fisherman\fR
+With fisherman \fIhttps://github\.com/fisherman/fisherman\fR
 .
 .IP "" 4
 .
 .nf
 
-fisher install z
+fisher z
 .
 .fi
 .
 .IP "" 0
 .
-.P
-With Fin \fIhttps://github\.com/fishery/fin\fR
-.
-.IP "" 4
-.
-.nf
-
-fin z
-.
-.fi
-.
-.IP "" 0
-.
-.P
-\fINOTE: \fBz\fR requires \fBconf\.d\fR support, so if you\'re installing \fBz\fR with fish \fB<2\.3\.0\fR you\'ll need to add the following snippet in \fB\.config/fish/config\.fish\fR to support that:\fR
+.SH "Notes"
+\fBz\fR was built for the latest fish, but at least 2\.2\.0 is required\. If you can\'t upgrade your build, append the following code to your \fB~/\.config/fish/config\.fish\fR\.
 .
 .IP "" 4
 .
@@ -46,6 +35,19 @@ fin z
 for file in ~/\.config/fish/conf\.d/*\.fish
     source $file
 end
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Or let me do that for you\.
+.
+.IP "" 4
+.
+.nf
+
+curl \-L git\.io/confd >> ~/\.config/fish/config\.fish
 .
 .fi
 .
@@ -76,16 +78,17 @@ z \-t foo          Goes to most recent directory matching foo
 .fi
 .
 .SH "Configuring Z"
-There are commands that let you modify the behaviour of \fBz\fR: \fBfish set \-U Z_CMD "j" Change commands to j and jo set \-U Z_DATA "$HOME/\.foo" Set data file to $HOME/\.foo set \-U ZO_METHOD "opencmd" Runs `opencmd dir` on `zo dir`\fR
+There are commands that let you modify the behaviour of \fBz\fR:
 .
-.SH "License"
-The MIT License (MIT)
+.IP "" 4
 .
-.P
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+.nf
+
+set \-U Z_CMD "j"               Change commands to j and jo
+set \-U Z_DATA "$HOME/\.foo"     Set data file to $HOME/\.foo
+set \-U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir` (defaults to `open` or `xdg\-open`)
 .
-.P
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software\.
+.fi
 .
-.P
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT\. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE\.
+.IP "" 0
+

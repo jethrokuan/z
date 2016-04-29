@@ -3,11 +3,14 @@
 
 # Z
 
-**z** is the new [z](http://github.com/rupa/z).
+> NOTE: z is more-or-less feature-complete. There will be little to no active development, but the software remains usable, and will be maintained.
 
-z uses a combination of recency and frequency (termed _frecency_) to bring you to the directory you want.
+**z** is a fish port of [z](http://github.com/rupa/z).
 
-Recommended fish version: `2.2.0`
+z solves the problem of jumping to and from common project directories, by tracking the frequency and recency of directories you've visited.
+It then uses frecency to jump you to the correct directory.
+
+A _pure-fish_ port means it's not just _fast_, but also fish-friendly with tab directory-completions. It also comes with the more flexibility and a small amount of additional functionality.
 
 ## Install
 
@@ -53,10 +56,11 @@ z -t foo          Goes to most recent directory matching foo
 
 ## Configuring Z
 There are commands that let you modify the behaviour of `z`:
+
 ```fish
 set -U Z_CMD "j"               Change commands to j and jo
 set -U Z_DATA "$HOME/.foo"     Set data file to $HOME/.foo
-set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir`
+set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir` (defaults to `open` or `xdg-open`)
 ```
 
 [slack-link]: https://fisherman-wharf.herokuapp.com/
