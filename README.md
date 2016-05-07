@@ -63,12 +63,13 @@ set -U Z_DATA "$HOME/.foo"     Set data file to $HOME/.foo
 set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir` (defaults to `open` or `xdg-open`)
 ```
 
-[slack-link]: https://fisherman-wharf.herokuapp.com/
-[slack-badge]: https://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square
-[fisherman]: https://github.com/fisherman/fisherman
+[slack-link]: https://fisherman-wharf.herokuapp.com
+[slack-badge]: https://fisherman-wharf.herokuapp.com/badge.svg
+
 [travis-link]: https://travis-ci.org/fisherman/z
-[travis-badge]: https://img.shields.io/travis/fisherman/z.svg?style=flat-square
-[fin]:https://github.com/fisherman/fin
+[travis-badge]: https://img.shields.io/travis/fisherman/z.svg
+
+[fisherman]: https://github.com/fisherman/fisherman
 
 <!-- Local Variables: -->
 <!-- firestarter-type: t -->
