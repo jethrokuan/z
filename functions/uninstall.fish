@@ -2,8 +2,6 @@ functions -e __z_on_variable_pwd
 functions -e $Z_CMD
 functions -e $ZO_CMD
 
-printf "Uninstalling z.\n" > /dev/stderr
-
 if test ! -z "$Z_DATA"
     printf "To completely erase z's data, remove:\n" > /dev/stderr
     printf "%s" "$Z_DATA" > /dev/stderr
