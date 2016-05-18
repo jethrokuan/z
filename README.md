@@ -7,10 +7,9 @@
 
 **z** is a fish port of [z](http://github.com/rupa/z).
 
-z solves the problem of jumping to and from common project directories, by tracking the frequency and recency of directories you've visited.
-It then uses frecency to jump you to the correct directory.
+Upon installation, z begins tracking the directories you visit. With a combination of frequency and recency statistics, it is able to jump you to the correct directory from any directory.
 
-A _pure-fish_ port means it's not just _fast_, but also fish-friendly with tab directory-completions. It also comes with the more flexibility and a small amount of additional functionality.
+A _pure-fish_ port means it is _fast_ and _fish-friendly_, with tab directory-completions and lazy loading. It also comes with the greater flexibility and additional functionality.
 
 ## Install
 
