@@ -6,7 +6,7 @@ function -S setup
   mkdir -p $path/{foo,bar,gen,vim}
 
   touch $Z_DATA
-  
+
   for i in foo bar gen vim
     cd $path/$i
   end

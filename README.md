@@ -47,7 +47,7 @@ zo foo               Opens file manager for best match
 ```
 
 ## Examples
-``` 
+```
 z foo             Goes to directory best matching foo
 zo foo            Opens file manager of directory best matching foo
 z -t foo          Goes to most recent directory matching foo

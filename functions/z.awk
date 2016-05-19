@@ -5,7 +5,7 @@ function frecent(rank, time) {
     if( dx < 604800 ) return rank/2
     return rank/4
 }
-                    
+
 function output(files, toopen) {
     if( option == "list" ) {
         if( typ == "recent" ) {

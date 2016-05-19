@@ -1,8 +1,8 @@
 function __z_add -d "Add PATH to .z file"
   set -l path (dirname (status -f))
-  
+
   for i in $Z_EXCLUDE
-    if contains -- $PWD $i     
+    if contains -- $PWD $i
       return 0 #Path excluded
     end
   end

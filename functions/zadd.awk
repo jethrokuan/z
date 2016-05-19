@@ -6,7 +6,7 @@ $2 >= 1 {
     if( $1 == path ) {
         rank[$1] = $2 + 1
         time[$1] = now
-    } 
+    }
     else {
         rank[$1] = $2
         time[$1] = $3

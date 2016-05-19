@@ -4,7 +4,7 @@ function __zo -d "Jump to a recent directory."
   set -l typ ''
   set -g z_path (dirname (status -f))
   set -l target
-  
+
   getopts $argv | while read -l 1 2
     switch $1
       case _
@@ -14,7 +14,7 @@ function __zo -d "Jump to a recent directory."
         printf "Usage: $ZO_CMD dir\n\n"
         printf "To use a different open command, set $ZO_METHOD:\n"
         printf "   set -U ZO_METHOD \"opencmd\"\n\n"
-        printf "         -h --help     Print this help" 
+        printf "         -h --help     Print this help"
         return 0
       case \*
         printf "$ZO_CMD: '%s' is not a valid option\n" $1
@@ -27,7 +27,7 @@ function __zo -d "Jump to a recent directory."
     set target $arg
   else
     set target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
-  end 
+  end
 
   if test -z "$target"
     printf "'%s' did not match any results" "$arg"
