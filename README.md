@@ -3,8 +3,6 @@
 
 # Z
 
-> NOTE: z is more-or-less feature-complete. There will be little to no active development, but the software remains usable, and will be maintained.
-
 **z** is a fish port of [z](http://github.com/rupa/z).
 
 Upon installation, z begins tracking the directories you visit. With a combination of frequency and recency statistics, it is able to jump you to the correct directory from any directory.
