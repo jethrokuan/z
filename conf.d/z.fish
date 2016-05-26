@@ -26,7 +26,7 @@ end
 
 if not set -q Z_EXCLUDE
   set -U Z_EXCLUDE $HOME
-end  
+end
 
 function __z_on_variable_pwd --on-variable PWD
   __z_add

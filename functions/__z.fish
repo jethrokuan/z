@@ -4,7 +4,7 @@ function __z -d "Jump to a recent directory."
   set -l typ ''
   set -g z_path (dirname (status -f))
   set -l target
-  
+
   getopts $argv | while read -l 1 2
     switch $1
       case c clean
@@ -52,7 +52,7 @@ function __z -d "Jump to a recent directory."
     else
       set target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
     end
-  
+
     if test "$status" -gt 0
       return
     end
