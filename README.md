@@ -5,21 +5,22 @@
 
 **z** is a fish port of [z](http://github.com/rupa/z).
 
-Upon installation, z begins tracking the directories you visit. With a combination of frequency and recency statistics, it is able to jump you to the correct directory from any directory.
+**z** tracks the directories you visit. With a combination of frequency and recency, it enables you to jump to the directory in mind.
 
-A _pure-fish_ port means it is _fast_ and _fish-friendly_, with tab directory-completions and lazy loading. It also comes with the greater flexibility and additional functionality.
+A _pure-fish_ port means it is _fast_ and _fish-friendly_, with tab-completions and lazy-loading. Top that off with greater customizability and a small amount of added functionality.
 
 ## Install
+> Note: fish version >2.2.0 is required.
 
+### fish >=2.3.0
 With [fisherman]
 
 ```
 fisher z
 ```
 
-## Notes
-
-`z` was built for the latest fish, but at least 2.2.0 is required. If you can't upgrade your build, append the following code to your `~/.config/fish/config.fish`.
+### fish <2.3.0
+If you can't upgrade your build, append the following code to your `~/.config/fish/config.fish`.
 
 ```fish
 for file in ~/.config/fish/conf.d/*.fish
