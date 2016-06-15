@@ -65,7 +65,7 @@ set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir` (defaults to `open
 [slack-badge]: https://fisherman-wharf.herokuapp.com/badge.svg
 
 [travis-link]: https://travis-ci.org/fisherman/z
-[travis-badge]: https://img.shields.io/travis/fisherman/z.svg
+[travis-badge]: https://travis-ci.org/fisherman/z.svg?branch=master
 
 [fisherman]: https://github.com/fisherman/fisherman
 
