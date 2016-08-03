@@ -31,7 +31,7 @@ end
 Or let me do that for you.
 
 ```fish
-curl -L git.io/snippet >> ~/.config/fish/config.fish
+curl -L git.io/v6kNP >> ~/.config/fish/config.fish
 ```
 
 ## Usage
