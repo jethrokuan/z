@@ -29,10 +29,8 @@ if not set -q Z_EXCLUDE
 end
 
 # Setup completions once first
-set -l __z_marks (cat $Z_DATA | sed "s/|.*//" | tr '\n' ' ')
-complete -c $Z_CMD -a $__z_marks -f
-complete -c $ZO_CMD -a $__z_marks -f
+__z_complete
 
-function __z_on_variable_pwd --on-variable PWD  
+function __z_on_variable_pwd --on-variable PWD
   __z_add
 end

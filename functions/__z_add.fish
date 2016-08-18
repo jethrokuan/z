@@ -14,7 +14,5 @@ function __z_add -d "Add PATH to .z file"
     mv -f $tmpfile $Z_DATA
   end
 
-  set -l __z_marks (cat $Z_DATA | sed "s/|.*//" | tr '\n' ' ')
-  complete -c $Z_CMD -a $__z_marks -f
-  complete -c $ZO_CMD -a $__z_marks -f
+  __z_complete
 end
