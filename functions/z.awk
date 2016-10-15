@@ -8,11 +8,7 @@ function frecent(rank, time) {
 
 function output(files, toopen) {
     if( option == "list" ) {
-        if( typ == "recent" ) {
-            cmd = "sort -nr >&2"
-        } else cmd = "sort -n >&2"
-        for( i in files ) if( files[i] ) printf "%-10s %s\n", files[i], i | cmd
-        print "done"
+        for( i in files ) if( files[i] ) printf "%-10s %s;", files[i], i
     } else {
         print toopen
     }

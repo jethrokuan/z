@@ -50,7 +50,12 @@ function __z -d "Jump to a recent directory."
     if test 1 -eq (printf "%s" $arg | grep -c "^\/")
       set target $arg
     else
-      set target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
+      set target (awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA") 
+    end
+
+    if test "$option" = "list"
+      echo "$target" | tr ";" "\n" | sort -nr
+      return 0
     end
 
     if test "$status" -gt 0
