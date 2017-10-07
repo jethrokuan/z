@@ -9,7 +9,7 @@ end
 
 if test ! -e "$Z_DATA"
   if test ! -e "$Z_DATA_DIR"
-    mkdir -p "$Z_DATA_DIR"  
+    mkdir -p -m 700 "$Z_DATA_DIR"  
   end
   touch "$Z_DATA"
 end
