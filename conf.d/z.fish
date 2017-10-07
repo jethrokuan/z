@@ -1,8 +1,16 @@
 if test -z "$Z_DATA"
-  set -U Z_DATA "$HOME/.z"
+  if test -z "$XDG_DATA_HOME"
+    set -U Z_DATA_DIR "$HOME/.local/share/z"
+  else 
+    set -U Z_DATA_DIR "$XDG_DATA_HOME/z"
+  end
+  set -U Z_DATA "$Z_DATA_DIR/data"
 end
 
-if test ! -f "$Z_DATA"
+if test ! -e "$Z_DATA"
+  if test ! -e "$Z_DATA_DIR"
+    mkdir -p "$Z_DATA_DIR"  
+  end
   touch "$Z_DATA"
 end
 
