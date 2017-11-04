@@ -34,8 +34,15 @@ test "! has kid"
   1 -eq (grep -q kid $Z_DATA; echo $status)
 end
 
+test "z --purge"
+  -z (z --purge > /dev/null; cat $Z_DATA)
+end
+
 test "z --clean"
-  -z (z --clean > /dev/null; cat $Z_DATA)
+  1 -eq (echo '$pth/invalid_path|1|1501234567' >> $Z_DATA;
+         z --clean > /dev/null;
+         grep -q invalid_path $Z_DATA;
+         echo $status)
 end
 
 test "z -e foo"
