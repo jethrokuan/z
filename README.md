@@ -39,6 +39,7 @@ curl -L git.io/v6kNP >> ~/.config/fish/config.fish
 z [-c --clean]       Cleans out Z_DATA
 z [-e --echo] foo    Prints best match, no cd
 z [-l --list] foo    List matches, no cd
+z [-p --purge]       Purges Z_DATA
 z [-r --rank] foo    Searches by rank, cd
 z [-t --recent] foo  Searches by recency, cd
 z [ -h --help]       Print this help

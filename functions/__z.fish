@@ -8,8 +8,12 @@ function __z -d "Jump to a recent directory."
   getopts $argv | while read -l 1 2
     switch $1
       case c clean
-        echo > $Z_DATA
+        __z_clean
         printf "%s cleaned!" $Z_DATA
+        return 0
+      case p purge
+        echo > $Z_DATA
+        printf "%s purged!" $Z_DATA
         return 0
       case e echo
         set option "ech"
@@ -35,6 +39,7 @@ function __z -d "Jump to a recent directory."
         printf "         -c --clean    Cleans out $Z_DATA\n"
         printf "         -e --echo     Prints best match, no cd\n"
         printf "         -l --list     List matches, no cd\n"
+        printf "         -p --purge    Purges $Z_DATA\n"
         printf "         -r --rank     Search by rank, cd\n"
         printf "         -t --recent   Search by recency, cd\n"
         printf "         -h --help     Print this help\n\n"
@@ -50,7 +55,7 @@ function __z -d "Jump to a recent directory."
     if test 1 -eq (printf "%s" $arg | grep -c "^\/")
       set target $arg
     else
-      set target (command awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA") 
+      set target (command awk -v t=(date +%s) -v option="$option" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
     end
 
     if test "$option" = "list"
