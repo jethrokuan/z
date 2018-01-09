@@ -11,7 +11,8 @@ function __z_add -d "Add PATH to .z file"
 
   if test -f $tmpfile
     command awk -v path="$PWD" -v now=(date +%s) -F "|" -f $path/zadd.awk $Z_DATA ^ /dev/null > $tmpfile
-    command mv -f $tmpfile $Z_DATA
+    cat $tmpfile > $Z_DATA
+    rm $tmpfile
   end
 
   __z_complete
