@@ -6,50 +6,65 @@ function frecent(rank, time) {
     return rank/4
 }
 
-function output(files, toopen) {
-    if( option == "list" ) {
-        for( i in files ) if( files[i] ) printf "%-10s %s;", files[i], i
+function output(matches, best_match, common) {
+    # list or return the desired directory
+    if( list ) {
+        cmd = "sort -n >&2"
+        for( x in matches ) {
+            if( matches[x] ) {
+                printf "%-10s %s\n", matches[x], x | cmd
+            }
+        }
+        if( common ) {
+            printf "%-10s %s\n", "common:", common > "/dev/stderr"
+        }
     } else {
-        print toopen
+        if( common ) best_match = common
+        print best_match
     }
 }
 
-function common(matches, fnd, nc) {
-    for( i in matches ) {
-        if( matches[i] && (!short || length(i) < length(short)) ) short = i
+function common(matches) {
+    # find the common root of a list of matches, if it exists
+    for( x in matches ) {
+        if( matches[x] && (!short || length(x) < length(short)) ) {
+            short = x
+        }
     }
     if( short == "/" ) return
-    for( i in matches ) if( matches[i] && i !~ short ) x = 1
-    if( x ) return
-    if( nc ) {
-        for( i in fnd ) if( tolower(short) !~ tolower(fnd[i]) ) x = 1
-    } else for( i in fnd ) if( short !~ fnd[i] ) x = 1
-    if( !x ) return short
+    for( x in matches ) if( matches[x] && index(x, short) != 1 ) {
+            return
+        }
+    return short
 }
 
-BEGIN { split(q, a, " ") }
-    {
-        if( system("test -d \"" $1 "\"") ) next
-        if( typ == "rank" ) {
-            f = $2
-        } else if( typ == "recent" ) {
-            f = t-$3
-        } else f = frecent($2, $3)
-        wcase[$1] = nocase[$1] = f
-        for( i in a ) {
-            if( $1 !~ a[i] ) delete wcase[$1]
-            if( tolower($1) !~ tolower(a[i]) ) delete nocase[$1]
-        }
-        if( wcase[$1] > oldf ) {
-            cx = $1
-            oldf = wcase[$1]
-        } else if( nocase[$1] > noldf ) {
-            ncx = $1
-            noldf = nocase[$1]
-        }
+BEGIN {
+    gsub(" ", ".*", q)
+    hi_rank = ihi_rank = -9999999999
+}
+{
+    if( typ == "rank" ) {
+        rank = $2
+    } else if( typ == "recent" ) {
+        rank = $3 - t
+    } else rank = frecent($2, $3)
+    if( $1 ~ q ) {
+        matches[$1] = rank
+    } else if( tolower($1) ~ tolower(q) ) imatches[$1] = rank
+    if( matches[$1] && matches[$1] > hi_rank ) {
+        best_match = $1
+        hi_rank = matches[$1]
+    } else if( imatches[$1] && imatches[$1] > ihi_rank ) {
+        ibest_match = $1
+        ihi_rank = imatches[$1]
     }
-    END {
-        if( cx ) {
-            output(wcase, cx)
-        } else if( ncx ) output(nocase, ncx)
+}
+
+END {
+# prefer case sensitive
+    if( best_match ) {
+        output(matches, best_match, common(matches))
+    } else if( ibest_match ) {
+        output(imatches, ibest_match, common(imatches))
     }
+}
