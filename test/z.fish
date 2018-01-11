@@ -57,10 +57,6 @@ test "z -h"
   0 -eq (z -h | grep -q Usage; echo $status)
 end
 
-test "z -v fails"
-  0 -eq (z -v | grep -q valid; echo $status)
-end
-
 test "z foo"
   $pth/foo = (z foo; and echo $PWD)
 end
