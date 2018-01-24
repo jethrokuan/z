@@ -53,29 +53,30 @@ function __z -d "Jump to a recent directory."
     end
   end
 
-  if test 1 -eq (printf "%s" $arg | grep -c "^\/")
-    set target $arg
-  else
-    set target (command awk -v t=(date +%s) -v list="$list" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
-  end
-
   if test "$list" = "list"
-    echo "$target" | tr ";" "\n" | sort -nr
-    return 0
-  end
+    # Handle list separately as it can print common path information to stderr
+    # which can not be captured from a subcommand.
+    command awk -v t=(date +%s) -v list="$list" -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA"
+  else
+    if test 1 -eq (printf "%s" $arg | grep -c "^\/")
+      set target $arg
+    else
+      set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$arg" -F "|" -f $z_path/z.awk "$Z_DATA")
+    end
 
-  if test "$status" -gt 0
-    return
-  end
+    if test "$status" -gt 0
+      return
+    end
 
-  if test -z "$target"
-    printf "'%s' did not match any results" "$arg"
-    return 1
-  end
+    if test -z "$target"
+      printf "'%s' did not match any results" "$arg"
+      return 1
+    end
 
-  if contains -- ech $option
-    printf "%s\n" "$target"
-  else if not contains -- list $option
-    pushd "$target"
+    if test "$option" = "ech"
+      printf "%s\n" "$target"
+    else
+      pushd "$target"
+    end
   end
 end

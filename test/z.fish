@@ -72,3 +72,11 @@ end
 test "z kid"
   "'kid' did not match any results1" = (z kid; and echo $PWD $status; or echo $status)
 end
+
+test "z --list foo"
+  $pth/foo = (z --list foo ^/dev/null | awk '{ print $2} ')
+end
+
+test "list common path on stderr"
+  "common:    $pth/foo" = (z --list foo 2>&1 >/dev/null | grep common:)
+end
