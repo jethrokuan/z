@@ -11,6 +11,9 @@ function __z_add -d "Add PATH to .z file"
 
   if test -f $tmpfile
     command awk -v path="$PWD" -v now=(date +%s) -F "|" -f $path/zadd.awk $Z_DATA ^ /dev/null > $tmpfile
+    if test ! -z "$Z_OWNER"
+      chown $Z_OWNER:(id -ng $Z_OWNER) "$tempfile"
+    end
     #
     # Don't use redirection here as it can lead to a race condition where $Z_DATA is clobbered.
     # Note: There is a still a possible race condition where an old version of $Z_DATA is
