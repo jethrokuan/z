@@ -60,6 +60,7 @@ There are commands that let you modify the behaviour of `z`:
 set -U Z_CMD "j"               Change commands to j and jo
 set -U Z_DATA "$HOME/.foo"     Set data file to $HOME/.foo
 set -U ZO_METHOD "opencmd"     Runs `opencmd dir` on `zo dir` (defaults to `open` or `xdg-open`)
+set -U Z_OWNER "username"      Ensure file ownership when used with `sudo`.
 ```
 
 [slack-link]: https://fisherman-wharf.herokuapp.com
