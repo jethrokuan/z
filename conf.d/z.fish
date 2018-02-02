@@ -28,7 +28,7 @@ end
 
 if test ! -z $ZO_CMD
   function $ZO_CMD -d "open target dir"
-    __zo $argv
+    __z -d $argv
   end
 end
 

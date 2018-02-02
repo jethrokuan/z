@@ -12,26 +12,18 @@ A _pure-fish_ port means it is _fast_ and _fish-friendly_, with tab-completions 
 ## Install
 > Note: fish version >2.2.0 is required.
 
-### fish >=2.3.0
+### fish >=2.7.0
 With [fisherman]
 
 ```
 fisher z
 ```
 
-### fish <2.3.0
-If you can't upgrade your build, append the following code to your `~/.config/fish/config.fish`.
+### fish <2.7.0
+Install the legacy z plugin:
 
-```fish
-for file in ~/.config/fish/conf.d/*.fish
-    source $file
-end
 ```
-
-Or let me do that for you.
-
-```fish
-curl -L git.io/v6kNP >> ~/.config/fish/config.fish
+fisher z@pre27
 ```
 
 ## Usage
