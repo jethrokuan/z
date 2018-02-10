@@ -9,7 +9,7 @@ function frecent(rank, time) {
 function output(matches, best_match, common) {
     # list or return the desired directory
     if( list ) {
-        cmd = "sort -n"
+        cmd = "sort -nr"
         for( x in matches ) {
             if( matches[x] ) {
                 printf "%-10s %s\n", matches[x], x | cmd
