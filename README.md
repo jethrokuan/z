@@ -28,10 +28,10 @@ fisher z@pre27
 
 ## Usage
 ```
-z [-c --clean]       Cleans out Z_DATA
+z [-c --clean]       Removes folders that no longer exist from Z_DATA
 z [-e --echo] foo    Prints best match, no cd
 z [-l --list] foo    List matches, no cd
-z [-p --purge]       Purges Z_DATA
+z [-p --purge]       Purges Z_DATA, deleting all entries
 z [-r --rank] foo    Searches by rank, cd
 z [-t --recent] foo  Searches by recency, cd
 z [ -h --help]       Print this help
