@@ -24,7 +24,7 @@ For more details about frecency, see https://github.com/rupa/z.
 
 ## OPTIONS
   * `-c`, `--clean`:
-    Removes folders that no longer exist from `$Z_DATA`.
+    Removes directories that no longer exist from `$Z_DATA`.
 
   * `-e`, `--echo`:
     Prints the best match. No cd.
