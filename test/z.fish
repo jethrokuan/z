@@ -76,3 +76,7 @@ end
 test "list common path on stderr"
   "common:    $pth/foo" = (z --list foo 2>&1 >/dev/null | grep common:)
 end
+
+test "z -x works"
+  "'foo' did not match any results1" = (z foo; and z -x; and cd ..; and z foo; and echo $PWD $status; or echo $status;)
+end

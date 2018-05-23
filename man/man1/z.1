@@ -53,19 +53,27 @@ Match by rank only\.
 \fB\-t\fR, \fB\-\-recent\fR
 Match by recent only\.
 .
+.TP
+\fB\-x\fR, \fB\-\-delete\fR
+Removes the current directory from \fB$Z_DATA\fR\.
+.
 .SH "EXAMPLES"
 .
 .TP
 \fBz foo\fR
-Goes to directory best matching \fBfoo\fR
+Goes to directory best matching \fBfoo\fR\.
 .
 .TP
 \fBzo foo\fR
-Opens file manager of directory best matching \fBfoo\fR
+Opens file manager of directory best matching \fBfoo\fR\.
 .
 .TP
 \fBz \-t foo\fR
-Goes to most recent directory matching \fBfoo\fR
+Goes to most recent directory matching \fBfoo\fR\.
+.
+.TP
+\fBz \-x\fR
+Removes the current directory from \fB$Z_DATA\fR\.
 .
 .SH "CONFIGURATION"
 .
