@@ -1,15 +1,18 @@
 function __z -d "Jump to a recent directory."
     function __print_help -d "Print z help."
-        printf "Usage: $Z_CMD  [-celrth] dir\n\n"
-        printf "         -c --clean    Cleans out $Z_DATA\n"
-        printf "         -d --dir      Opens directory using system file manager.\n"
+        printf "Usage: $Z_CMD  [-celrth] regex1 regex2...\n\n"
+        printf "         -c --clean    Removes directories that no longer exist from $Z_DATA\n"
+        printf "         -d --dir      Opens matching directory using system file manager.\n"
         printf "         -e --echo     Prints best match, no cd\n"
-        printf "         -l --list     List matches, no cd\n"
-        printf "         -p --purge    Purges $Z_DATA\n"
-        printf "         -r --rank     Search by rank, cd\n"
-        printf "         -t --recent   Search by recency, cd\n"
+        printf "         -l --list     List matches and scores, no cd\n"
+        printf "         -p --purge    Delete all entries from $Z_DATA\n"
+        printf "         -r --rank     Search by rank\n"
+        printf "         -t --recent   Search by recency\n"
         printf "         -h --help     Print this help\n\n"
-        printf "If installed with fisherman, run `fisher help z` for more info"
+
+        if type -q fisher
+            printf "Run `fisher help z` for more information."
+        end
     end
 
     set -l options "h/help" "c/clean" "e/echo" "l/list" "p/purge" "r/rank" "t/recent" "d/directory"
