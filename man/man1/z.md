@@ -41,16 +41,22 @@ For more details about frecency, see https://github.com/rupa/z.
   * `-t`, `--recent`:
     Match by recent only.
 
+  * `-x`, `--delete`:
+    Removes the current directory from `$Z_DATA`.
+
 ## EXAMPLES
 
   * `z foo`:
-    Goes to directory best matching `foo`
+    Goes to directory best matching `foo`.
 
   * `zo foo`:
-    Opens file manager of directory best matching `foo`
+    Opens file manager of directory best matching `foo`.
 
   * `z -t foo`:
-    Goes to most recent directory matching `foo`
+    Goes to most recent directory matching `foo`.
+
+  * `z -x`:
+    Removes the current directory from `$Z_DATA`.
 
 ## CONFIGURATION
 

@@ -8,6 +8,7 @@ function __z -d "Jump to a recent directory."
         printf "         -p --purge    Delete all entries from $Z_DATA\n"
         printf "         -r --rank     Search by rank\n"
         printf "         -t --recent   Search by recency\n"
+        printf "         -x --delete   Removes the current directory from $Z_DATA\n"
         printf "         -h --help     Print this help\n\n"
 
         if type -q fisher
@@ -15,7 +16,7 @@ function __z -d "Jump to a recent directory."
         end
     end
 
-    set -l options "h/help" "c/clean" "e/echo" "l/list" "p/purge" "r/rank" "t/recent" "d/directory"
+    set -l options "h/help" "c/clean" "e/echo" "l/list" "p/purge" "r/rank" "t/recent" "d/directory" "x/delete"
     set -g z_path (command dirname (status -f))
 
     argparse $options -- $argv
@@ -30,6 +31,9 @@ function __z -d "Jump to a recent directory."
     else if set -q _flag_purge
         echo > $Z_DATA
         printf "%s purged!" $Z_DATA
+        return 0
+    else if set -q _flag_delete
+        sed -i -e "\:^$PWD|.*:d" $Z_DATA
         return 0
     end
 
