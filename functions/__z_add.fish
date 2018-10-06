@@ -1,6 +1,4 @@
 function __z_add -d "Add PATH to .z file"
-  set -l path (command dirname (status -f))
-
   for i in $Z_EXCLUDE
     if contains -- $PWD $i
       return 0 #Path excluded
@@ -10,7 +8,29 @@ function __z_add -d "Add PATH to .z file"
   set -l tmpfile (mktemp $Z_DATA.XXXXXX)
 
   if test -f $tmpfile
-    command awk -v path="$PWD" -v now=(date +%s) -F "|" -f $path/zadd.awk $Z_DATA 2>/dev/null >$tmpfile
+    command awk -v path="$PWD" -v now=(date +%s) -F "|" '
+      BEGIN {
+          rank[path] = 1
+          time[path] = now
+      }
+      $2 >= 1 {
+          if( $1 == path ) {
+              rank[$1] = $2 + 1
+              time[$1] = now
+          }
+          else {
+              rank[$1] = $2
+              time[$1] = $3
+          }
+          count += $2
+      }
+      END {
+          if( count > 1000 ) {
+              for( i in rank ) print i "|" 0.9*rank[i] "|" time[i] # aging
+          }
+          else for( i in rank ) print i "|" rank[i] "|" time[i]
+      }
+    ' $Z_DATA 2>/dev/null >$tmpfile
     if test ! -z "$Z_OWNER"
       chown $Z_OWNER:(id -ng $Z_OWNER) $tmpfile
     end
