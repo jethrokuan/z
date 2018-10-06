@@ -31,6 +31,7 @@ function __z_add -d "Add PATH to .z file"
           else for( i in rank ) print i "|" rank[i] "|" time[i]
       }
     ' $Z_DATA 2>/dev/null >$tmpfile
+    
     if test ! -z "$Z_OWNER"
       chown $Z_OWNER:(id -ng $Z_OWNER) $tmpfile
     end
