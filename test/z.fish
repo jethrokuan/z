@@ -50,7 +50,7 @@ test "z -e foo"
 end
 
 test "! z -e kid"
-  "'kid' did not match any results1" = (z -e kid; echo $status)
+  (printf "'kid' did not match any results\n1") = (z -e kid; echo $status)
 end
 
 test "z -h"
@@ -66,7 +66,7 @@ test "z bar"
 end
 
 test "z kid"
-  "'kid' did not match any results1" = (z kid; and echo $PWD $status; or echo $status)
+  (printf "'kid' did not match any results\n1") = (z kid; and echo $PWD $status; or echo $status)
 end
 
 test "z --list foo"
@@ -78,5 +78,5 @@ test "list common path on stderr"
 end
 
 test "z -x works"
-  "'foo' did not match any results1" = (z foo; and z -x; and cd ..; and z foo; and echo $PWD $status; or echo $status;)
+  (printf "'foo' did not match any results\n1") = (z foo; and z -x; and cd ..; and z foo; and echo $PWD $status; or echo $status;)
 end
