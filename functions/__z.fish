@@ -12,7 +12,7 @@ function __z -d "Jump to a recent directory."
         printf "         -h --help     Print this help\n\n"
 
         if type -q fisher
-            printf "Run `fisher help z` for more information."
+            printf "Run `fisher help z` for more information.\n"
         end
     end
 
@@ -25,11 +25,11 @@ function __z -d "Jump to a recent directory."
         return 0
     else if set -q _flag_clean
         __z_clean
-        printf "%s cleaned!" $Z_DATA
+        printf "%s cleaned!\n" $Z_DATA
         return 0
     else if set -q _flag_purge
         echo > $Z_DATA
-        printf "%s purged!" $Z_DATA
+        printf "%s purged!\n" $Z_DATA
         return 0
     else if set -q _flag_delete
         sed -i -e "\:^$PWD|.*:d" $Z_DATA
@@ -129,7 +129,7 @@ function __z -d "Jump to a recent directory."
         end
 
         if test -z "$target"
-            printf "'%s' did not match any results" "$argv"
+            printf "'%s' did not match any results\n" "$argv"
             return 1
         end
 
