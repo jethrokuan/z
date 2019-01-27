@@ -2,7 +2,10 @@ function __z_clean -d "Clean up .z file to remove paths no longer valid"
   set -l tmpfile (mktemp $Z_DATA.XXXXXX)
 
   if test -f $tmpfile
-    command awk -F "|" 'system("test -d \"" $1 "\"") == 0 { print $0 }' $Z_DATA > $tmpfile
+    while read line
+        set -l path (string split '|' $line)[1]
+        test -d $path; and echo $line
+    end < $Z_DATA > $tmpfile
     command mv -f $tmpfile $Z_DATA
   end
 
