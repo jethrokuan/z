@@ -72,6 +72,14 @@ test "z bar"
   $pth/bar = (z bar; and echo $PWD)
 end
 
+test "f oo"
+  $pth/foo = (z f oo; and echo $PWD)
+end
+
+test "fo oo"
+  $pth/foo != (z fo oo; and echo $PWD)
+end
+
 test "z kid"
   (printf "'kid' did not match any results\n1") = (z kid; and echo $PWD $status; or echo $status)
 end
