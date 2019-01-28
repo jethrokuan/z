@@ -15,7 +15,7 @@ function __z -d "Jump to a recent directory."
             printf "Run `fisher help z` for more information.\n"
         end
     end
-    function __legacy_escape_regex
+    function __z_legacy_escape_regex
         # taken from escape_string_pcre2 in fish
         # used to provide compatibility with fish 2
         for c in (string split '' $argv)
@@ -132,7 +132,7 @@ function __z -d "Jump to a recent directory."
         if string escape --style=regex ^/dev/null '' # use builtin escape if available
             set escaped (string escape --style=regex $escaped)
         else
-            set escaped (__legacy_escape_regex $escaped)
+            set escaped (__z_legacy_escape_regex $escaped)
         end
         # Need to escape twice, see https://www.math.utah.edu/docs/info/gawk_5.html#SEC32
         set escaped (string replace --all \\ \\\\ $escaped)
