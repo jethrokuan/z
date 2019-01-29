@@ -15,6 +15,16 @@ function __z -d "Jump to a recent directory."
             printf "Run `fisher help z` for more information.\n"
         end
     end
+    function __z_legacy_escape_regex
+        # taken from escape_string_pcre2 in fish
+        # used to provide compatibility with fish 2
+        for c in (string split '' $argv)
+            if contains $c (string split '' '.^$*+()?[{}\\|-]')
+                printf \\
+            end
+            printf '%s' $c
+        end
+    end
 
     set -l options "h/help" "c/clean" "e/echo" "l/list" "p/purge" "r/rank" "t/recent" "d/directory" "x/delete"
 
@@ -86,7 +96,6 @@ function __z -d "Jump to a recent directory."
         }
 
         BEGIN {
-            gsub(" ", ".*", q)
             hi_rank = ihi_rank = -9999999999
         }
         {
@@ -117,12 +126,26 @@ function __z -d "Jump to a recent directory."
         }
     '
 
+    set -l qs
+    for arg in $argv
+        set -l escaped $arg
+        if string escape --style=regex ^/dev/null '' # use builtin escape if available
+            set escaped (string escape --style=regex $escaped)
+        else
+            set escaped (__z_legacy_escape_regex $escaped)
+        end
+        # Need to escape twice, see https://www.math.utah.edu/docs/info/gawk_5.html#SEC32
+        set escaped (string replace --all \\ \\\\ $escaped)
+        set qs $qs $escaped
+    end
+    set -l q (string join '.*' $qs)
+
     if set -q _flag_list
         # Handle list separately as it can print common path information to stderr
         # which cannot be captured from a subcommand.
-        command awk -v t=(date +%s) -v list="list" -v typ="$typ" -v q="$argv" -F "|" $z_script "$Z_DATA"
+        command awk -v t=(date +%s) -v list="list" -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA"
     else
-        set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$argv" -F "|" $z_script "$Z_DATA")
+        set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA")
 
         if test "$status" -gt 0
             return

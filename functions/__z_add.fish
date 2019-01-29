@@ -8,7 +8,8 @@ function __z_add -d "Add PATH to .z file"
   set -l tmpfile (mktemp $Z_DATA.XXXXXX)
 
   if test -f $tmpfile
-    command awk -v path="$PWD" -v now=(date +%s) -F "|" '
+    set -l path (string replace --all \\ \\\\ $PWD)
+    command awk -v path=$path -v now=(date +%s) -F "|" '
       BEGIN {
           rank[path] = 1
           time[path] = now
