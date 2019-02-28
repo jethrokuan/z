@@ -129,7 +129,7 @@ function __z -d "Jump to a recent directory."
     set -l qs
     for arg in $argv
         set -l escaped $arg
-        if string escape --style=regex ^/dev/null '' # use builtin escape if available
+        if string escape --style=regex 2>&1 >/dev/null '' # use builtin escape if available
             set escaped (string escape --style=regex $escaped)
         else
             set escaped (__z_legacy_escape_regex $escaped)
