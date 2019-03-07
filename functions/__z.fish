@@ -164,9 +164,15 @@ function __z -d "Jump to a recent directory."
         if set -q _flag_echo
             printf "%s\n" "$target"
         else if set -q _flag_directory
-            type -q xdg-open;and xdg-open "$target"; and return $status;
-            type -q open;and open "$target"; and return $status;
-            echo "Not sure how to open file manager"; and return 1;
+            # Be careful, in msys2, explorer always return 1
+            if test "$OS" = Windows_NT
+                type -q explorer;and explorer "$target"; return 0;
+                echo "Cannot open file explorer"; return 1;
+            else
+                type -q xdg-open;and xdg-open "$target"; and return $status;
+                type -q open;and open "$target"; and return $status;
+                echo "Not sure how to open file manager"; and return 1;
+            end
         else
             pushd "$target"
         end
