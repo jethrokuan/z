@@ -166,6 +166,7 @@ function __z -d "Jump to a recent directory."
         else if set -q _flag_directory
             if test "$OS" = Windows_NT
                 type -q explorer;and explorer "$target"; return $status;
+                # Be careful, in msys2, explorer always return 1
             else
                 type -q xdg-open;and xdg-open "$target"; and return $status;
                 type -q open;and open "$target"; and return $status;
