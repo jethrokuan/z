@@ -2,8 +2,6 @@
 
 # Z
 
-This repo is a fork of [jethrokuan/z](https://github.com/jethrokuan/z) with support for opening file explorer on Windows.
-
 **z** is a port of [z](https://github.com/rupa/z) for the [fish shell](https://fishshell.com).
 
 **z** tracks the directories you visit. With a combination of frequency and recency, it enables you to jump to the directory in mind.

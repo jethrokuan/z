@@ -165,7 +165,7 @@ function __z -d "Jump to a recent directory."
             printf "%s\n" "$target"
         else if set -q _flag_directory
             if test "$OS" = Windows_NT
-                type -q explorer;and explorer "$target"; return 0;
+                type -q explorer;and explorer "$target"; return $status;
             else
                 type -q xdg-open;and xdg-open "$target"; and return $status;
                 type -q open;and open "$target"; and return $status;
