@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "Z" "1" "May 2018" "" ""
+.TH "Z" "1" "August 2019" "" ""
 .
 .SH "NAME"
 \fBz\fR \- jump around
@@ -10,10 +10,10 @@
 z \- jump around: port of rupa\'s z
 .
 .SH "SYNOPSIS"
-\fBz [\-cehlprt] regex1 regex2\.\.\.\fR
+\fBz [\-cehlprt] string1 string2\.\.\.\fR
 .
 .br
-\fBzo [\-cehlprt] regex1 regex2\.\.\.\fR
+\fBzo [\-cehlprt] string1 string2\.\.\.\fR
 .
 .SH "DESCRIPTION"
 Port of rupa\'s z:
@@ -22,7 +22,7 @@ Port of rupa\'s z:
 Tracks your most used directories, based on \'frecency\'\. The data is stored in a file located at \fB$Z_DATA\fR\.
 .
 .P
-After a short learning phase, z will take you to the most \'frecent\' directory that matches ALL of the regexes given on the command line, in order\.
+After a short learning phase, z will take you to the most \'frecent\' directory that matches ALL of the strings given on the command line, in order\.
 .
 .P
 For more details about frecency, see https://github\.com/rupa/z\.
