@@ -6,8 +6,8 @@ z - jump around: port of rupa's z
 
 ## SYNOPSIS
 
-`z [-cehlprt] regex1 regex2...` <br>
-`zo [-cehlprt] regex1 regex2...`
+`z [-cehlprt] string1 string2...` <br>
+`zo [-cehlprt] string1 string2...`
 
 ## DESCRIPTION
 
@@ -17,7 +17,7 @@ Tracks your most used directories, based on 'frecency'. The data is
 stored in a file located at `$Z_DATA`.
 
 After a short learning phase, z will take you to the most 'frecent'
-directory that matches ALL of the regexes given on the command line,
+directory that matches ALL of the strings given on the command line,
 in order.
 
 For more details about frecency, see https://github.com/rupa/z.
