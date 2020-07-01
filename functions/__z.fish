@@ -144,6 +144,7 @@ function __z -d "Jump to a recent directory."
         # Handle list separately as it can print common path information to stderr
         # which cannot be captured from a subcommand.
         command awk -v t=(date +%s) -v list="list" -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA"
+        return
     else
         set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA")
 
@@ -154,11 +155,6 @@ function __z -d "Jump to a recent directory."
         if test -z "$target"
             printf "'%s' did not match any results\n" "$argv"
             return 1
-        end
-
-        if set -q _flag_list
-            echo "$target" | tr ";" "\n" | sort -nr
-            return 0
         end
 
         if set -q _flag_echo
