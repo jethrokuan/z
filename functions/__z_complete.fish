@@ -1,8 +1,10 @@
 function __z_complete -d "add completions"
-  set -l __z_marks (string replace -r '\|.*' '' < $Z_DATA | string escape)
+  function __z_marks
+      printf "%s\n" (string replace -r '\|.*' '' < $Z_DATA)
+  end
 
-  complete -c $Z_CMD -a "$__z_marks" -f
-  complete -c $ZO_CMD -a "$__z_marks" -f
+  complete -c $Z_CMD -a "(__z_marks)" -f
+  complete -c $ZO_CMD -a "(__z_marks)" -f
 
   complete -c $Z_CMD -s c -l clean  -d "Cleans out $Z_DATA"
   complete -c $Z_CMD -s e -l echo   -d "Prints best match, no cd"
