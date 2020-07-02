@@ -1,6 +1,6 @@
 function __z -d "Jump to a recent directory."
     function __print_help -d "Print z help."
-        printf "Usage: $Z_CMD  [-celrth] regex1 regex2...\n\n"
+        printf "Usage: $Z_CMD  [-celrth] string1 string2...\n\n"
         printf "         -c --clean    Removes directories that no longer exist from $Z_DATA\n"
         printf "         -d --dir      Opens matching directory using system file manager.\n"
         printf "         -e --echo     Prints best match, no cd\n"
