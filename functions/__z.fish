@@ -145,32 +145,32 @@ function __z -d "Jump to a recent directory."
         # which cannot be captured from a subcommand.
         command awk -v t=(date +%s) -v list="list" -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA"
         return
-    else
-        set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA")
+    end
 
-        if test "$status" -gt 0
-            return
-        end
+    set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA")
 
-        if test -z "$target"
-            printf "'%s' did not match any results\n" "$argv"
-            return 1
-        end
+    if test "$status" -gt 0
+        return
+    end
 
-        if set -q _flag_echo
-            printf "%s\n" "$target"
-        else if set -q _flag_directory
-            # Be careful, in msys2, explorer always return 1
-            if test "$OS" = Windows_NT
-                type -q explorer;and explorer "$target"; return 0;
-                echo "Cannot open file explorer"; return 1;
-            else
-                type -q xdg-open;and xdg-open "$target"; and return $status;
-                type -q open;and open "$target"; and return $status;
-                echo "Not sure how to open file manager"; and return 1;
-            end
+    if test -z "$target"
+        printf "'%s' did not match any results\n" "$argv"
+        return 1
+    end
+
+    if set -q _flag_echo
+        printf "%s\n" "$target"
+    else if set -q _flag_directory
+        # Be careful, in msys2, explorer always return 1
+        if test "$OS" = Windows_NT
+            type -q explorer;and explorer "$target"; return 0;
+            echo "Cannot open file explorer"; return 1;
         else
-            pushd "$target"
+            type -q xdg-open;and xdg-open "$target"; and return $status;
+            type -q open;and open "$target"; and return $status;
+            echo "Not sure how to open file manager"; and return 1;
         end
+    else
+        pushd "$target"
     end
 end
