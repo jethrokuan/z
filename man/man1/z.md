@@ -72,3 +72,11 @@ For more details about frecency, see https://github.com/rupa/z.
   * `set -U Z_OWNER "username"`:
     Ensure data file is owned by `username`. This prevents usage of `z`
     with `sudo` to cause file to be inaccessible in non-sudo sessions.
+
+  * `set -p Z_EXCLUDE "regex"`:
+    Exclude all directories matching the regex from being added to the 
+    z-store in the future. This does not modify the existing store.
+    
+    For example `set -P Z_EXCLUDE "^/mnt/workVPN"` will block all paths starting
+    with `/mnt/workVPN`. `set -P Z_EXCLUDE "^/mnt/workVPN\$"` would exclude
+    exactly that directory, but not any of `/mnt/workVPN`'s subdirectories.
