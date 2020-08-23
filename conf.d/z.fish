@@ -34,6 +34,9 @@ end
 
 if not set -q Z_EXCLUDE
   set -U Z_EXCLUDE "^$HOME\$"
+else if contains $HOME $Z_EXCLUDE
+  # Workaround: migrate old default values to a regex (see #90).
+  set Z_EXCLUDE (string replace -r -- "^$HOME\$" '^'$HOME'$$' $Z_EXCLUDE)
 end
 
 # Setup completions once first

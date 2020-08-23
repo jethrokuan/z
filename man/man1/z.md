@@ -77,6 +77,6 @@ For more details about frecency, see https://github.com/rupa/z.
     Exclude all directories matching the regex from being added to the 
     z-store in the future. This does not modify the existing store.
     
-    For example `set -P Z_EXCLUDE "^/mnt/workVPN"` will block all paths starting
+    For example `set -p Z_EXCLUDE "^/mnt/workVPN"` will block all paths starting
     with `/mnt/workVPN`. `set -P Z_EXCLUDE "^/mnt/workVPN\$"` would exclude
     exactly that directory, but not any of `/mnt/workVPN`'s subdirectories.
