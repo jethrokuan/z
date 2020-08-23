@@ -33,7 +33,7 @@ if test ! -z $ZO_CMD
 end
 
 if not set -q Z_EXCLUDE
-  set -U Z_EXCLUDE "$HOME\$"
+  set -U Z_EXCLUDE "^$HOME\$"
 end
 
 # Setup completions once first
