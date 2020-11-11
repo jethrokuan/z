@@ -12,12 +12,12 @@ Originally written by [@jethrokuan](https://github.com/jethrokuan/), co-maintain
 
 ## Installation
 
-We recommend using [fisher](https://github.com/jorgebucaran/fisher) to install **z**.
+We recommend using [Fisher](https://github.com/jorgebucaran/fisher) to install **z**.
 
 ### fish >=2.7.0
 
 ```
-fisher add jethrokuan/z
+fisher install jethrokuan/z
 ```
 
 ### fish <2.7.0
@@ -25,7 +25,7 @@ fisher add jethrokuan/z
 Install the legacy z plugin:
 
 ```
-fisher add z@pre27
+fisher install z@pre27
 ```
 
 ### fish 2.2.0 :warning:
