@@ -20,6 +20,11 @@ We recommend using [Fisher](https://github.com/jorgebucaran/fisher) to install *
 fisher install jethrokuan/z
 ```
 
+For macOS, use the following command
+```
+fisher add jethroukuan/z
+```
+
 ### fish <2.7.0
 
 Install the legacy z plugin:
