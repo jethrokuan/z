@@ -18,7 +18,7 @@ Install with [Fisher](https://github.com/jorgebucaran/fisher):
 fisher install jethrokuan/z
 ```
 
-For fish <`2.7.0` users you can installl from our legacy branch:
+For fish <`2.7.0` users you can install from our legacy branch:
 
 ```
 fisher install z@pre27
