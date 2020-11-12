@@ -1,0 +1,25 @@
+name: CI
+
+on: push
+       
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Fish
+        run: |
+          sudo apt-add-repository -yn ppa:fish-shell/release-3
+          sudo apt-get update
+          sudo apt-get install -y fish
+
+      - name: Install Fisher & Fishtape
+        run: curl -sL git.io/fisher | source && fisher install jorgebucaran/{fisher,fishtape@pre2}
+        shell: fish {0}
+
+      - name: Run Tests
+        run: |
+          $GITHUB_WORKSPACE/ && fisher install .
+          fishtape test/*.fish
+        shell: fish {0}
