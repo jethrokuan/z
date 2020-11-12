@@ -12,25 +12,17 @@ Originally written by [@jethrokuan](https://github.com/jethrokuan/), co-maintain
 
 ## Installation
 
-We recommend using [Fisher](https://github.com/jorgebucaran/fisher) to install **z**.
+Install with [Fisher](https://github.com/jorgebucaran/fisher):
 
-### fish >=2.7.0
-
-```
+```console
 fisher install jethrokuan/z
 ```
 
-### fish <2.7.0
-
-Install the legacy z plugin:
+For fish <`2.7.0` users you can install from our legacy branch:
 
 ```
 fisher install z@pre27
 ```
-
-### fish 2.2.0 :warning:
-
-Z is not available for fish 2.2.0 or older. Please upgrade your shell.
 
 ## Usage
 
