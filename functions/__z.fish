@@ -10,10 +10,6 @@ function __z -d "Jump to a recent directory."
         printf "         -t --recent   Search by recency\n"
         printf "         -x --delete   Removes the current directory from $Z_DATA\n"
         printf "         -h --help     Print this help\n\n"
-
-        if type -q fisher
-            printf "Run `fisher help z` for more information.\n"
-        end
     end
     function __z_legacy_escape_regex
         # taken from escape_string_pcre2 in fish
