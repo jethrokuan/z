@@ -22,7 +22,7 @@ function __z -d "Jump to a recent directory."
         end
     end
 
-    set -l options "h/help" "c/clean" "e/echo" "l/list" "p/purge" "r/rank" "t/recent" "d/directory" "x/delete"
+    set -l options h/help c/clean e/echo l/list p/purge r/rank t/recent d/directory x/delete
 
     argparse $options -- $argv
 
@@ -34,7 +34,7 @@ function __z -d "Jump to a recent directory."
         printf "%s cleaned!\n" $Z_DATA
         return 0
     else if set -q _flag_purge
-        echo > $Z_DATA
+        echo >$Z_DATA
         printf "%s purged!\n" $Z_DATA
         return 0
     else if set -q _flag_delete
@@ -45,9 +45,9 @@ function __z -d "Jump to a recent directory."
     set -l typ
 
     if set -q _flag_rank
-        set typ "rank"
+        set typ rank
     else if set -q _flag_recent
-        set typ "recent"
+        set typ recent
     end
 
     set -l z_script '
@@ -159,12 +159,14 @@ function __z -d "Jump to a recent directory."
     else if set -q _flag_directory
         # Be careful, in msys2, explorer always return 1
         if test "$OS" = Windows_NT
-            type -q explorer;and explorer "$target"; return 0;
-            echo "Cannot open file explorer"; return 1;
+            type -q explorer; and explorer "$target"
+            return 0
+            echo "Cannot open file explorer"
+            return 1
         else
-            type -q xdg-open;and xdg-open "$target"; and return $status;
-            type -q open;and open "$target"; and return $status;
-            echo "Not sure how to open file manager"; and return 1;
+            type -q xdg-open; and xdg-open "$target"; and return $status
+            type -q open; and open "$target"; and return $status
+            echo "Not sure how to open file manager"; and return 1
         end
     else
         pushd "$target"
