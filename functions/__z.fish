@@ -157,8 +157,11 @@ function __z -d "Jump to a recent directory."
     if set -q _flag_echo
         printf "%s\n" "$target"
     else if set -q _flag_directory
-        # Be careful, in msys2, explorer always return 1
-        if test "$OS" = Windows_NT
+        if test -n "$ZO_METHOD"
+            type -q "$ZO_METHOD"; and "$ZO_METHOD" "$target"; and return $status
+            echo "Cannot open with ZO_METHOD set to $ZO_METHOD"; and return 1
+        else if test "$OS" = Windows_NT
+            # Be careful, in msys2, explorer always return 1
             type -q explorer; and explorer "$target"
             return 0
             echo "Cannot open file explorer"
