@@ -1,5 +1,5 @@
 function __z_add -d "Add PATH to .z file"
-    set -q fish_private_mode; and return 0
+    test -n "$fish_private_mode"; and return 0
 
     for i in $Z_EXCLUDE
         if string match -r $i $PWD >/dev/null
