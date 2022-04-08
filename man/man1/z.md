@@ -60,9 +60,6 @@ For more details about frecency, see https://github.com/rupa/z.
 
 ## CONFIGURATION
 
-  * `set -U Z_CMD "j"`:
-    Change commands to `j` and `jo`
-
   * `set -U Z_DATA "$HOME/.foo"`:
     Set data file to `$HOME/.foo`
 

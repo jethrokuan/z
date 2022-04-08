@@ -20,8 +20,6 @@ echo pth $pth >&2
 echo Z_DATA $Z_DATA >&2
 @test ".z is created" -f $Z_DATA
 
-@test "Z_CMD is set" ! -z $Z_CMD
-
 @test "has foo" 0 -eq (grep -q foo $Z_DATA; echo $status)
 
 @test "has bar" 0 -eq (grep -q bar $Z_DATA; echo $status)
