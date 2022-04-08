@@ -60,8 +60,6 @@ cd_some
 
 @test "z --list foo" $pth/foo = (z --list foo 2>/dev/null | awk '{ print $2} ')
 
-@test "list common path on stderr" "common:    $pth/foo" = (z --list foo 2>&1 >/dev/null | grep common:)
-
 @test "z -x works" 1 = (begin; z foo; and z -x; and cd ..; and z foo; end >/dev/null; echo $status)
 
 rm -rf $pth

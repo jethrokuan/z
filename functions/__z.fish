@@ -68,9 +68,6 @@ function __z -d "Jump to a recent directory."
                         printf "%-10s %s\n", matches[x], x | cmd
                     }
                 }
-                if( common ) {
-                    printf "%-10s %s\n", "common:", common > "/dev/stderr"
-                }
             } else {
                 if( common ) best_match = common
                 print best_match
