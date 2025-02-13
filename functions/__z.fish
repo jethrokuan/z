@@ -14,7 +14,7 @@ function __z -d "Jump to a recent directory."
     function __z_legacy_escape_regex
         # taken from escape_string_pcre2 in fish
         # used to provide compatibility with fish 2
-        for c in (string split '' $argv)
+        for c in (string split -- '' $argv)
             if contains $c (string split '' '.^$*+()?[{}\\|-]')
                 printf \\
             end
@@ -123,15 +123,15 @@ function __z -d "Jump to a recent directory."
     for arg in $argv
         set -l escaped $arg
         if string escape --style=regex '' >/dev/null 2>&1 # use builtin escape if available
-            set escaped (string escape --style=regex $escaped)
+            set escaped (string escape --style=regex -- $escaped)
         else
             set escaped (__z_legacy_escape_regex $escaped)
         end
         # Need to escape twice, see https://www.math.utah.edu/docs/info/gawk_5.html#SEC32
-        set escaped (string replace --all \\ \\\\ $escaped)
+        set escaped (string replace --all -- \\ \\\\ $escaped)
         set qs $qs $escaped
     end
-    set -l q (string join '.*' $qs)
+    set -l q (string join -- '.*' $qs)
 
     if set -q _flag_list
         # Handle list separately as it can print common path information to stderr
