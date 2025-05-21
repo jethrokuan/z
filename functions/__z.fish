@@ -168,7 +168,11 @@ function __z -d "Jump to a recent directory."
             type -q open; and open "$target"; and return $status
             echo "Not sure how to open file manager"; and return 1
         end
-    else
+    else if test -d $target
         pushd "$target"
+    else
+        echo "Folder '$target' does not exist anymore, removing from z_data"
+        sed -i -e "\:^$target|.*:d" $Z_DATA
+        __z $argv
     end
 end
