@@ -143,7 +143,7 @@ function __z -d "Jump to a recent directory."
     if set -q q[1]
         set target (command awk -v t=(date +%s) -v typ="$typ" -v q="$q" -F "|" $z_script "$Z_DATA")
     else
-        set target (path resolve $HOME)
+        set target $HOME
     end
 
     if test "$status" -gt 0
