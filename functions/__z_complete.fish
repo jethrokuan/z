@@ -1,6 +1,11 @@
 function __z_complete -d "add completions"
-    complete -c $Z_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '')" -f -k
-    complete -c $ZO_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '')" -f -k
+    if test $Z_TILDE_STARTS_COMPLETIONS = true
+        complete -c $Z_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '' | string replace $HOME '~')" -f -k
+        complete -c $ZO_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '' | string replace $HOME '~')" -f -k
+    else
+        complete -c $Z_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '')" -f -k
+        complete -c $ZO_CMD -a "(__z -l | string replace -r '^\\S*\\s*' '')" -f -k
+    end
 
     complete -c $Z_CMD -s c -l clean -d "Cleans out $Z_DATA"
     complete -c $Z_CMD -s e -l echo -d "Prints best match, no cd"
