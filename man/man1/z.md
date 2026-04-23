@@ -73,6 +73,12 @@ For more details about frecency, see https://github.com/rupa/z.
     Ensure data file is owned by `username`. This prevents usage of `z`
     with `sudo` to cause file to be inaccessible in non-sudo sessions.
 
+  * `set -U Z_TILDE_STARTS_COMPLETIONS true`:
+    Replaces all occurances of `/home/userdir` in the completions with `~`
+    (defaults to false).
+    So, for example, `/home/userdir/Desktop` becomes `~/Desktop` when typing
+    `z <tab>` or `z des<tab>`.
+    
   * `set -p Z_EXCLUDE "regex"`:
     Exclude all directories matching the regex from being added to the 
     z-store in the future. This does not modify the existing store.
