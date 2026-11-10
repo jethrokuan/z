@@ -1,4 +1,6 @@
 function __z -d "Jump to a recent directory."
+    set -l original_args $argv
+
     function __print_help -d "Print z help."
         printf "Usage: $Z_CMD  [-celrth] string1 string2...\n\n"
         printf "         -c --clean    Removes directories that no longer exist from $Z_DATA\n"
@@ -172,7 +174,25 @@ function __z -d "Jump to a recent directory."
             type -q open; and open "$target"; and return $status
             echo "Not sure how to open file manager"; and return 1
         end
-    else
+    else if test -d "$target"
         cd "$target"
+    else
+        printf "Folder '%s' does not exist anymore, removing from z_data\n" "$target" >&2
+        set -l tmpfile (mktemp "$Z_DATA.XXXXXX")
+        if test -z "$tmpfile"
+            printf "Could not create a temporary file for %s\n" "$Z_DATA" >&2
+            return 1
+        end
+        command awk -F '|' -v target="$target" '$1 != target' "$Z_DATA" >"$tmpfile"
+        or begin
+            command rm -f "$tmpfile"
+            return 1
+        end
+        command mv "$tmpfile" "$Z_DATA"
+        or begin
+            command rm -f "$tmpfile"
+            return 1
+        end
+        __z $original_args
     end
 end

@@ -48,6 +48,12 @@ cd_some
 
 @test "z foo" $pth/foo = (z foo; and echo $PWD)
 
+set -l stale $pth/missing-foo
+set -l now (date +%s)
+printf "%s|100|%s\n%s|1|%s\n" "$stale" "$now" "$pth/foo" "$now" >$Z_DATA
+@test "z removes a missing match and retries" $pth/foo = (z foo 2>/dev/null; and echo $PWD)
+@test "z removes the missing entry" 1 = (grep -qF "$stale|" $Z_DATA; echo $status)
+
 @test "z bar" $pth/bar = (z bar; and echo $PWD)
 
 @test "f oo" $pth/foo = (z f oo; and echo $PWD)
